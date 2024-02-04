@@ -8,3 +8,10 @@ data class Question(
     val property5: String,
     val property6: String
 )
+data class SubmitAnswersRequest(val score: Int)
+
+data class LoginResponse(val token: String)
+data class RegisterResponse(val token: String)
+
+//login request
+data class LoginRequest(val email: String, val password: String)
