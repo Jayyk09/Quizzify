@@ -63,6 +63,7 @@ fun QuizzifyTheme(
         }
     }
 
+
     MaterialTheme(
         colorScheme = colorScheme,
         typography = Typography,

@@ -27,6 +27,7 @@ import androidx.navigation.NavController
 import androidx.navigation.NavHostController
 import androidx.navigation.compose.rememberNavController
 import com.example.quizzify.ViewModels.RegisterViewModel
+import com.example.quizzify.ui.theme.GradientButton
 import com.example.quizzify.ui.theme.QuizzifyTheme
 
 
@@ -87,15 +88,8 @@ fun RegisterScreen(
 
             Spacer(modifier = Modifier.height(16.dp))
 
-            Button(
-                onClick = { viewModel.registerUser(name, email, password) },
-                modifier = Modifier
-                    .fillMaxWidth()
-                    .padding(8.dp)
-            ) {
-                Text("Register")
-            }
-            }
+            GradientButton(text = "Register", onClick = {})
+        }
         }
     }
 

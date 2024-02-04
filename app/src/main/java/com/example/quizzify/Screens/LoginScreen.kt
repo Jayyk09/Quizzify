@@ -7,6 +7,7 @@ import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
 import androidx.compose.material3.Button
+import androidx.compose.material3.ButtonDefaults
 import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Surface
@@ -18,6 +19,14 @@ import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
 import androidx.compose.runtime.setValue
+<<<<<<< Updated upstream
+=======
+import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.unit.dp
+import androidx.compose.ui.text.input.PasswordVisualTransformation
+import androidx.compose.material3.Text
+import androidx.compose.runtime.rememberUpdatedState
+>>>>>>> Stashed changes
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.text.input.PasswordVisualTransformation
@@ -27,6 +36,14 @@ import androidx.lifecycle.viewmodel.compose.viewModel
 import androidx.navigation.NavHostController
 import androidx.navigation.compose.rememberNavController
 import com.example.quizzify.ViewModels.LoginViewModel
+<<<<<<< Updated upstream
+=======
+import androidx.compose.runtime.collectAsState
+import androidx.lifecycle.viewmodel.compose.viewModel
+import com.example.quizzify.ui.theme.QuizzifyTheme
+import com.example.quizzify.ui.theme.GradientButton
+
+>>>>>>> Stashed changes
 
 
 @OptIn(ExperimentalMaterial3Api::class)
@@ -73,17 +90,10 @@ fun LoginScreen(
 
             Spacer(modifier = Modifier.padding(8.dp))
 
-            Button(
-                onClick = { loginViewModel.loginUser(email, password) },
-                modifier = Modifier
-                    .fillMaxWidth()
-                    .padding(8.dp)
-            ) {
-                Text("Login")
-            }
-        }
+            GradientButton(text = "Login", onClick = {})
         }
     }
+}
 
 @Preview
 @Composable
