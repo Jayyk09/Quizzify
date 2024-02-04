@@ -34,9 +34,8 @@ import androidx.lifecycle.viewmodel.compose.viewModel
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
 fun LoginScreen(
-    onLogin: (String, String) -> Unit,
     navController: NavHostController,
-    loginViewModel: LoginViewModel = viewModel()
+    loginViewModel: LoginViewModel
 ) {
 
     var email by remember { mutableStateOf("") }
@@ -93,7 +92,7 @@ fun LoginScreen(
 fun LoginScreenPreview() {
     val navController = rememberNavController()
     LoginScreen(
-        onLogin = { _, _ -> },
-        navController
+        navController,
+        LoginViewModel()
     )
 }

@@ -26,14 +26,15 @@ import androidx.compose.ui.tooling.preview.Preview
 import androidx.navigation.NavController
 import androidx.navigation.NavHostController
 import androidx.navigation.compose.rememberNavController
+import com.example.quizzify.ViewModels.RegisterViewModel
 import com.example.quizzify.ui.theme.QuizzifyTheme
 
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
 fun RegisterScreen(
-    onRegister: (String, String, String) -> Unit,
-    navController: NavController
+    navController: NavHostController,
+    viewModel: RegisterViewModel
 ) {
     var name by remember { mutableStateOf("") }
     var email by remember { mutableStateOf("") }
@@ -48,9 +49,14 @@ fun RegisterScreen(
             modifier = Modifier
                 .fillMaxSize()
                 .padding(16.dp),
-            verticalArrangement = Arrangement.spacedBy(8.dp),
+            verticalArrangement = Arrangement.Center,
             horizontalAlignment = Alignment.CenterHorizontally
         ) {
+            Text(
+                text = "Quizzify",
+                style = MaterialTheme.typography.titleLarge,
+                modifier = Modifier.padding(bottom = 16.dp)
+            )
             OutlinedTextField(
                 value = name,
                 onValueChange = { name = it },
@@ -82,7 +88,7 @@ fun RegisterScreen(
             Spacer(modifier = Modifier.height(16.dp))
 
             Button(
-                onClick = { onRegister(name, email, password) },
+                onClick = { viewModel.registerUser(name, email, password) },
                 modifier = Modifier
                     .fillMaxWidth()
                     .padding(8.dp)
@@ -99,8 +105,8 @@ fun RegisterScreenPreview() {
     QuizzifyTheme {
 
         RegisterScreen(
-            onRegister = { _, _, _ -> },
-            navController = rememberNavController()
+            navController = rememberNavController(),
+            viewModel = RegisterViewModel()
         )
 }
 }

@@ -36,12 +36,14 @@ import androidx.navigation.compose.NavHost
 import androidx.compose.material3.Surface
 import androidx.compose.material3.Text
 import androidx.compose.ui.tooling.preview.Preview
+import androidx.navigation.NavHostController
+import com.example.quizzify.Screens.HomeScreen
 
 class MainActivity : ComponentActivity() {
 
     //viewModels
     private val loginViewModel: LoginViewModel by viewModels()
-    private val viewModel: RegisterViewModel by viewModels()
+    private val registerViewModel: RegisterViewModel by viewModels()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -49,65 +51,25 @@ class MainActivity : ComponentActivity() {
             QuizzifyTheme {
                 val navController = rememberNavController()
 
-                NavHost(navController = navController, startDestination = "login") {
-                    composable("login") {
-                        LoginScreen( //passing the viewModels to the composable
-                            onLogin = { email, password ->
-                                loginViewModel.loginUser(email, password)
-                            },
-                            navController = navController
-                        )
-
+                NavHost(navController = navController, startDestination = "home") {
+                    composable("home") {
+                        HomeScreen(navController = navController)
                     }
+
+                    composable("login") {
+                        LoginScreen(
+                            navController = navController,
+                            loginViewModel = loginViewModel
+                        )
+                    }
+
                     composable("register") {
                         RegisterScreen(
-                            onRegister = { name, email, password ->
-                                viewModel.registerUser(name, email, password)
-                            },
-                            navController = navController
+                            navController = navController,
+                            viewModel = registerViewModel
                         )
                     }
-
                 }
-                // A surface container using the 'background' color from the theme
-                Surface(
-                    modifier = Modifier.fillMaxSize(),
-                    color = MaterialTheme.colorScheme.background
-                ) {
-                    Column(
-                        modifier = Modifier
-                            .fillMaxSize()
-                            .padding(16.dp),
-                        verticalArrangement = Arrangement.Center,
-                        horizontalAlignment = Alignment.CenterHorizontally
-                    ) {
-                        Text(
-                            text = "Welcome to Quizzify!",
-                            modifier = Modifier.padding(bottom = 16.dp),
-                            style = MaterialTheme.typography.titleMedium
-                        )
-
-                        // For example, you can add a button to navigate to the registration screen
-                        Row(
-                            modifier = Modifier.fillMaxWidth(),
-                            horizontalArrangement = Arrangement.SpaceEvenly,
-                            verticalAlignment = Alignment.CenterVertically
-                        ) {
-                            Button(
-                                onClick = { navController.navigate("register") },
-                                modifier = Modifier.padding(8.dp)
-                            ) {
-                                Text("Register")
-                            }
-
-                            Button(onClick = { navController.navigate("login") }) {
-                                Text("Login")
-                            }
-
-                        }
-
-                        }
-                    }
                 }
             }
         }
@@ -115,66 +77,8 @@ class MainActivity : ComponentActivity() {
 
 @Preview
 @Composable
-fun MainActivityPreview() {
+fun DefaultPreview() {
     QuizzifyTheme {
-        val navController = rememberNavController()
-
-        NavHost(navController = navController, startDestination = "login") {
-            composable("login") {
-                val loginViewModel: LoginViewModel = LoginViewModel()
-                LoginScreen(
-                    onLogin = { email, password ->
-                        loginViewModel.loginUser(email, password)
-                    },
-                    navController = navController
-                )
-            }
-            composable("register") {
-                val viewModel: RegisterViewModel = RegisterViewModel()
-                RegisterScreen(
-                    onRegister = { name, email, password ->
-                        viewModel.registerUser(name, email, password)
-                    },
-                    navController = navController
-                )
-            }
-        }
-
-        Surface(
-            modifier = Modifier.fillMaxSize(),
-            color = MaterialTheme.colorScheme.background
-        ) {
-            Column(
-                modifier = Modifier
-                    .fillMaxSize()
-                    .padding(16.dp),
-                verticalArrangement = Arrangement.Center,
-                horizontalAlignment = Alignment.CenterHorizontally
-            ) {
-                Text(
-                    text = "Welcome to Quizzify!",
-                    modifier = Modifier.padding(bottom = 16.dp),
-                    style = MaterialTheme.typography.titleLarge
-                )
-
-                // For example, you can add a button to navigate to the registration screen
-                Row(
-                    modifier = Modifier.fillMaxWidth(),
-                    horizontalArrangement = Arrangement.SpaceEvenly,
-                    verticalAlignment = androidx.compose.ui.Alignment.CenterVertically
-                ) {
-                    Button(
-                        onClick = { /* Handle button click */ },
-                        modifier = Modifier.padding(8.dp)
-                    ) {
-                        Text("Register")
-                    }
-
-                    Button(onClick = { /* Handle button click */ }) {
-                        Text("Login")
-                    }
-                }
-            }
-        }
+        HomeScreen(navController = rememberNavController())
     }
 }
