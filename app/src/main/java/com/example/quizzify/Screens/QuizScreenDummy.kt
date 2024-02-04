@@ -8,6 +8,7 @@ import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.itemsIndexed
+import androidx.compose.foundation.rememberScrollState
 import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.RadioButton
@@ -16,6 +17,7 @@ import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
+import androidx.compose.runtime.saveable.rememberSaveable
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
@@ -76,7 +78,7 @@ fun QuestionList(questions: List<Question>) {
 
 @Composable
 fun OptionsList(options: List<String>, correctAnswer: String, onAnswerSelected: (Boolean) -> Unit) {
-    var selectedOption by remember { mutableStateOf("") }
+    var selectedOption by rememberSaveable { mutableStateOf("") }
 
     options.forEach { option ->
         Row(

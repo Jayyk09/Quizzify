@@ -1,13 +1,9 @@
 package com.example.quizzify.api
 
-<<<<<<< Updated upstream
 import retrofit2.Response
 import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
 import retrofit2.http.Body
-=======
-/*import resInterface
->>>>>>> Stashed changes
 import retrofit2.http.POST
 import retrofit2.http.Query
 
@@ -15,7 +11,6 @@ interface apiInterface {
 
     //login and register
     @POST("MY_API_ENDPOINT")
-<<<<<<< Updated upstream
     suspend fun loginUser(
         @Body request: LoginRequest // Assuming LoginRequest is a data class for the request body
     ): Response<LoginResponse>
@@ -47,9 +42,6 @@ interface apiInterface {
             return retrofit.create(apiInterface::class.java)
         }
     }
-}
 
-=======
-    suspend fun Questions(): List<resInterface>
-}*/
->>>>>>> Stashed changes
+}
+    //suspend fun Questions(): List<resInterface
