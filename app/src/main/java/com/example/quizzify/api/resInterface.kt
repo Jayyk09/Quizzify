@@ -1,6 +1,6 @@
 package com.example.quizzify.api
 
-data class resInterface(
+data class Question(
     val property1: String,
     val property2: String,
     val property3: String,
